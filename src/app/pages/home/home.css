@@ -1,0 +1,37 @@
+.hero {
+  background: linear-gradient(-45deg, #ffcc00, #f39c12, #ff6b6b, #5567ff);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  padding: 110px 20px;
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hero h1 { font-size: 42px; margin-bottom: 10px; }
+.hero p { font-size: 18px; margin-bottom: 18px; }
+.cta {
+  display: inline-block;
+  background: #111;
+  color: #ffcc00;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cta:hover { background: #ffcc00; color: #111; }
+
+.features { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 18px; padding: 36px 18px; text-align: center; }
+.feature-card { width: 30%; min-width: 220px; background: white; padding: 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+@media (max-width: 780px) {
+  .features { flex-direction: column; align-items: center; }
+  .feature-card { width: 90%; }
+  .hero { padding: 70px 12px; }
+}

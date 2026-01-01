@@ -1,0 +1,13 @@
+#cart { padding: 20px; background: white; border-radius: 10px; margin: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.cart-item { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; }
+.cart-item span { flex: 1; text-align: left; display: flex; align-items: center; gap: 12px; }
+.quantity-controls { display: flex; }
+.quantity-controls button { background: #111; color: white; border: none; padding: 2px 8px; margin: 0 2px; border-radius: 4px; cursor: pointer; }
+.quantity-controls button:hover { background: #ffcc00; color: #111; }
+.cart-item button.remove { background: #ff4444; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; margin-left: 12px; }
+.cart-item button.remove:hover { background: #ff0000; }
+
+.payment-form { max-width: 360px; margin: 20px; background: white; padding: 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.payment-form input { width: 100%; padding: 10px; margin-top: 6px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #ddd; }
+.payment-form button { width: 100%; padding: 10px; background: #111; color: #ffcc00; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; transition:0.3s; }
+.payment-form button:hover { background: #ffcc00; color: #111; }

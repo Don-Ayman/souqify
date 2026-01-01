@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
-  imports: [],
+  selector: 'login',
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css'],
 })
 export class Login {
-
+  login() {
+    alert('Login not implemented');
+  }
 }
