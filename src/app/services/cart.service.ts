@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface CartItem {
+interface CartItem {
   name: string;
   price: number;
   quantity: number;
@@ -12,14 +12,7 @@ export interface CartItem {
 })
 export class CartService {
   private cartItems: CartItem[] = [];
-
-  // Observable pour que les composants se mettent à jour automatiquement
-  private cartSubject = new BehaviorSubject<CartItem[]>([]);
-  cart$ = this.cartSubject.asObservable();
-
-  getCart() {
-    return this.cartItems;
-  }
+  cart$ = new BehaviorSubject<CartItem[]>([]);
 
   addToCart(product: { name: string; price: number }) {
     const existing = this.cartItems.find(item => item.name === product.name);
@@ -28,25 +21,19 @@ export class CartService {
     } else {
       this.cartItems.push({ ...product, quantity: 1 });
     }
-    this.cartSubject.next(this.cartItems);
+    this.cart$.next([...this.cartItems]); // met à jour tous les abonnés
   }
 
-  increaseQuantity(index: number) {
-    this.cartItems[index].quantity += 1;
-    this.cartSubject.next(this.cartItems);
+  getCart() {
+    return this.cart$.asObservable();
   }
 
-  decreaseQuantity(index: number) {
-    if (this.cartItems[index].quantity > 1) {
-      this.cartItems[index].quantity -= 1;
-    } else {
-      this.cartItems.splice(index, 1);
-    }
-    this.cartSubject.next(this.cartItems);
+  getTotal(): number {
+    return this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
 
   clearCart() {
     this.cartItems = [];
-    this.cartSubject.next(this.cartItems);
+    this.cart$.next([]);
   }
 }

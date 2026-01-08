@@ -1,12 +1,24 @@
 import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service'; // chemin selon ton projet
+
+interface Product {
+  name: string;
+  price: number;
+  category: string;
+  img: string;
+}
 
 @Component({
   selector: 'app-products',
-  templateUrl: './products.html',  // use .component.html
-  styleUrls: ['./products.css'],   // use .component.css and 'styleUrls' (plural)
+  templateUrl: './products.html',
+  styleUrls: ['./products.css'],
+  standalone: true,
+  imports: [NgFor, FormsModule]
 })
 export class Products {
-  allProducts = [
+  allProducts: Product[] = [
     { name: "Redmi Note 13", price: 299, category: "portables", img: "PASTE URL 1" },
     { name: "Redmi Note 14", price: 349, category: "portables", img: "PASTE URL 2" },
     { name: "Samsung Galaxy S23", price: 799, category: "portables", img: "PASTE URL 3" },
@@ -27,26 +39,20 @@ export class Products {
     { name: "USB-C Hub", price: 59, category: "accessoires", img: "PASTE URL 18" }
   ];
 
-  addToCart(productName: string) {
-    alert(`Added ${productName} to cart`);
+  filteredProducts: Product[] = [...this.allProducts];
+  selectedCategory: string = 'all';
+
+  constructor(private cartService: CartService) {}
+
+  addToCart(product: Product) {
+    this.cartService.addToCart({ name: product.name, price: product.price });
   }
 
   filterProducts() {
-    const select = (document.getElementById('product-filter') as HTMLSelectElement);
-    const filter = select.value;
-    const container = document.getElementById('product-list');
-    if (!container) return;
-
-    let filtered = this.allProducts;
-    if (filter !== 'all') filtered = this.allProducts.filter(p => p.category === filter);
-
-    container.innerHTML = filtered.map((p, i) => `
-      <div class="card" data-index="${i}">
-        <img src="${p.img}" alt="${p.name} image">
-        <h3>${p.name}</h3>
-        <div class="price">$${p.price}</div>
-        <button onclick="alert('Added ${p.name} to cart')">Add to Cart</button>
-      </div>
-    `).join('');
+    if (this.selectedCategory === 'all') {
+      this.filteredProducts = [...this.allProducts];
+    } else {
+      this.filteredProducts = this.allProducts.filter(p => p.category === this.selectedCategory);
+    }
   }
 }

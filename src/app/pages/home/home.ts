@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'home',
-  imports: [],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css'],   // ⚡ c'était styleUrl au singulier, erreur
+  standalone: true
 })
-export class Home {
-
-}
+export class Home {}

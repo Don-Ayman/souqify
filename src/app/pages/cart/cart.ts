@@ -1,32 +1,28 @@
 import { Component } from '@angular/core';
-
-interface CartItem {
-  name: string;
-  price: number;
-  quantity: number;
-}
+import { NgIf, NgFor } from '@angular/common';
+import { CartService } from '../../services/cart.service'; // <- chemin selon ton projet
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.html',
-  styleUrls: ['./cart.css']
+  styleUrls: ['./cart.css'],
+  standalone: true,
+  imports: [NgIf, NgFor]
 })
 export class Cart {
-  cart: CartItem[] = [];
+  cart: any[] = [];
+  showPaymentForm = false;
+  private sub: Subscription;
 
-  addToCart(product: { name: string; price: number }) {
-    const existing = this.cart.find(item => item.name === product.name);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      this.cart.push({ ...product, quantity: 1 });
-    }
-    this.updateCart();
+  constructor(private cartService: CartService) {
+    this.sub = this.cartService.getCart().subscribe(items => {
+      this.cart = items;
+    });
   }
 
   increaseQuantity(index: number) {
-    this.cart[index].quantity += 1;
-    this.updateCart();
+    this.cartService.addToCart(this.cart[index]);
   }
 
   decreaseQuantity(index: number) {
@@ -35,15 +31,19 @@ export class Cart {
     } else {
       this.cart.splice(index, 1);
     }
-    this.updateCart();
   }
 
-  updateCart() {
-    // In Angular, cart items are rendered with *ngFor in the HTML, so no need for innerHTML
-    // This function is just here if you want to do extra updates
+  getTotal() {
+    return this.cartService.getTotal();
   }
 
-  showPaymentForm = false;
+  checkout() {
+    if (this.cart.length === 0) {
+      alert('Your cart is empty.');
+      return;
+    }
+    this.showPaymentForm = true;
+  }
 
   confirmPayment(name: string, card: string, exp: string, cvv: string) {
     if (!name || !card || !exp || !cvv) {
@@ -51,7 +51,7 @@ export class Cart {
       return;
     }
     alert(`Thank you, ${name}! Your payment is successful.`);
-    this.cart = [];
+    this.cartService.clearCart();
     this.showPaymentForm = false;
   }
 }

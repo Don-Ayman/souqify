@@ -1,7 +1,30 @@
-<h1>Cart</h1>
+<div class="cart-container">
+  <h1>Cart</h1>
 
-<div *ngIf="cart.length === 0">Your cart is empty</div>
+  <div *ngIf="cart.length === 0">Your cart is empty</div>
 
-<div *ngFor="let item of cart">
-  {{ item.name }} × {{ item.quantity }}
+  <div *ngFor="let item of cart" class="cart-item">
+    <div class="item-info">
+      <span>{{ item.name }} × {{ item.quantity }}</span>
+      <span>${{ item.price * item.quantity }}</span>
+    </div>
+    <div class="item-controls">
+      <button (click)="decreaseQuantity(cart.indexOf(item))">-</button>
+      <button (click)="increaseQuantity(cart.indexOf(item))">+</button>
+    </div>
+  </div>
+
+  <div class="cart-total">Total: ${{ getTotal() }}</div>
+
+  <button class="checkout-btn" (click)="showPaymentForm = true">Checkout</button>
+
+  <!-- Formulaire de paiement -->
+  <div *ngIf="showPaymentForm" class="payment-form">
+    <h2>Payment</h2>
+    <input type="text" placeholder="Name" #name>
+    <input type="text" placeholder="Card Number" #card>
+    <input type="text" placeholder="Expiry MM/YY" #exp>
+    <input type="text" placeholder="CVV" #cvv>
+    <button (click)="confirmPayment(name.value, card.value, exp.value, cvv.value)">Pay ${{ getTotal() }}</button>
+  </div>
 </div>
