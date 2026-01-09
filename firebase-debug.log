@@ -1,0 +1,48 @@
+[debug] [2026-01-09T16:36:36.335Z] ----------------------------------------------------------------------
+[debug] [2026-01-09T16:36:36.337Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\zhardware\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-01-09T16:36:36.337Z] CLI Version:   15.2.1
+[debug] [2026-01-09T16:36:36.337Z] Platform:      win32
+[debug] [2026-01-09T16:36:36.338Z] Node Version:  v24.11.1
+[debug] [2026-01-09T16:36:36.338Z] Time:          Fri Jan 09 2026 17:36:36 GMT+0100 (GMT+01:00)
+[debug] [2026-01-09T16:36:36.338Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\cygwin64\home\zhardware\souqify
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-01-09T16:37:43.194Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-09T16:37:43.195Z] > authorizing via signed-in user (ayman.bouhayat.11@edu.uiz.ac.ma)
+[debug] [2026-01-09T16:37:43.196Z] Checked if tokens are valid: true, expires at: 1767980163985
+[debug] [2026-01-09T16:37:43.196Z] Checked if tokens are valid: true, expires at: 1767980163985
+[debug] [2026-01-09T16:37:43.197Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2026-01-09T16:37:43.793Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-01-09T16:37:43.793Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] 
+=== Hosting Setup
+[debug] [2026-01-09T16:37:49.003Z] Checked if tokens are valid: true, expires at: 1767980163985
+[debug] [2026-01-09T16:37:49.003Z] Checked if tokens are valid: true, expires at: 1767980163985
+[debug] [2026-01-09T16:37:49.003Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/souqify-c298d [none]
+[debug] [2026-01-09T16:37:49.384Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/souqify-c298d 200
+[debug] [2026-01-09T16:37:49.384Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/souqify-c298d {"projectId":"souqify-c298d","projectNumber":"781672182478","displayName":"souqify","name":"projects/souqify-c298d","resources":{"hostingSite":"souqify-c298d"},"state":"ACTIVE","etag":"1_1fbd2328-79f9-4b1c-9540-fc26c8e96616"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

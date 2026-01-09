@@ -1,20 +1,38 @@
-<h2 style="padding:20px 20px 0 20px;">Products</h2>
+<div class="products-page">
 
-<div style="padding:0 20px 12px 20px;">
-  <label>Filter: </label>
-  <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
-    <option value="all">All</option>
-    <option value="portables">Portables</option>
-    <option value="pc-portables">PC Portables</option>
-    <option value="accessoires">Accessoires</option>
-  </select>
-</div>
-
-<div class="products" style="display:flex; flex-wrap:wrap; gap:12px;">
-  <div *ngFor="let p of filteredProducts" class="card" style="border:1px solid #ccc; padding:10px; width:180px;">
-    <img [src]="p.img" [alt]="p.name + ' image'" style="width:100%; height:120px; object-fit:cover;">
-    <h3>{{ p.name }}</h3>
-    <div class="price">${{ p.price }}</div>
-    <button (click)="addToCart(p)">Add to Cart</button>
+  <!-- Title -->
+  <div class="products-header">
+    <h1>Products</h1>
+    <p>Discover our best tech deals</p>
   </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
+      <option value="all">All categories</option>
+      <option value="portables">Phones</option>
+      <option value="pc-portables">Laptops</option>
+      <option value="accessoires">Accessories</option>
+    </select>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let p of filteredProducts">
+
+      <img [src]="p.img" alt="{{ p.name }}">
+
+      <div class="product-info">
+        <h3>{{ p.name }}</h3>
+        <span class="category">{{ p.category }}</span>
+        <div class="price">${{ p.price }}</div>
+      </div>
+
+      <button class="add-btn" (click)="addToCart(p)">
+        Add to Cart
+      </button>
+
+    </div>
+  </div>
+
 </div>
