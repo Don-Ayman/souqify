@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/souqify",
+    "public": "dist/souqify/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
